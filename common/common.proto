@@ -139,10 +139,12 @@ message Envelope {
 // Note that the BlockHeader chains to the previous BlockHeader, and the BlockData hash is embedded
 // in the BlockHeader.  This makes it natural and obvious that the Data is included in the hash, but
 // the Metadata is not.
+// Edit - Added a new extension section that could possibly include file objects.
 message Block {
     BlockHeader header = 1;
     BlockData data = 2;
-    BlockMetadata metadata = 3;
+    BlockExtension extension = 3;
+    BlockMetadata metadata = 4;
 }
 
 // BlockHeader is the element of the block which forms the block chain
@@ -156,6 +158,10 @@ message BlockHeader {
 
 message BlockData {
     repeated bytes data = 1;
+}
+
+message BlockExtension{
+    repeated bytes filedata = 1;
 }
 
 message BlockMetadata {
